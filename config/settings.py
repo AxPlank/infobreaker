@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'exam.apps.ExamConfig',
     'main.apps.MainConfig',
+    'board.apps.BoardConfig',
 ]
 
 MIDDLEWARE = [
