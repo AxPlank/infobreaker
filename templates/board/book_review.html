@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h1>{{ book.title }} - {{ book.publisher }}</h1>
+    <img src="{{ book.cover.url }}"/>
+    <p>가격: {{ book.price }}원</p>
+    <form method="post" action="#">
+
+    </form>
+</section>
+{% endblock %}
