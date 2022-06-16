@@ -7,22 +7,9 @@ def written(request):
     return render(request, 'exam/written.html', dictt)
 
 def writtenPart(request, part):
-    dictt = {}
-    if part == 1:
-        question_list = WrittenQuestion.objects.filter(part=part).order_by('id')
-        dictt['quesiton_list'] = question_list
-    if part == 2:
-        question_list = WrittenQuestion.objects.filter(part=part).order_by('id')
-        dictt['quesiton_list'] = question_list
-    if part == 3:
-        question_list = WrittenQuestion.objects.filter(part=part).order_by('id')
-        dictt['quesiton_list'] = question_list
-    if part == 4:
-        question_list = WrittenQuestion.objects.filter(part=part).order_by('id')
-        dictt['quesiton_list'] = question_list
-    if part == 5:
-        question_list = WrittenQuestion.objects.filter(part=part).order_by('id')
-        dictt['quesiton_list'] = question_list
+    problem_list = Problem.objects.filter(type='필기', part=part).order_by('id')
+    print(problem_list)
+    dictt = {'problem_list': problem_list}
     return render(request, 'exam/question_choice.html', dictt)
 
 def practical(request):
@@ -31,6 +18,13 @@ def practical(request):
     return render(request, 'exam/practical.html', dictt)
 
 def practicalPart(request, part):
-    return render(request, 'exam/question_choice.html')
+    problem_list = Problem.objects.filter(type='실기', part=part).order_by('id')
+    dictt = {'problem_list': problem_list}
+    return render(request, 'exam/question_choice.html', dictt)
+
+def problem(request, problem_id):
+    problem = get_object_or_404(Problem, pk=problem_id)
+    dictt = {'problem': problem}
+    return render(request, 'exam/problem.html', dictt)
 
 # Create your views here.

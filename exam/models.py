@@ -8,16 +8,22 @@ class WrittenPart(models.Model):
     def __str__(self):
         return self.name
 
-class WrittenQuestion(models.Model):
+class Problem(models.Model):
+    type = models.CharField(max_length=255)
+    type_integer = models.IntegerField()
     part = models.IntegerField()
     question = models.TextField()
-    example = models.ImageField(blank=True, upload_to='written/5/')
-    ex1 = models.TextField()
-    ex2 = models.TextField()
-    ex3 = models.TextField()
-    ex4 = models.TextField()
-    answer = models.IntegerField()
+    example = models.ImageField(null=True, blank=True, upload_to=f'{type}/{part}/')
+    ex1 = models.TextField(blank=True)
+    ex2 = models.TextField(blank=True)
+    ex3 = models.TextField(blank=True)
+    ex4 = models.TextField(blank=True)
+    answer = models.CharField(blank=True, max_length=255)
     comment = models.TextField()
+
+    def __str__(self):
+        title = f'{self.type} part {self.part}. {self.question}'
+        return title
 
 class PracticalPart(models.Model):
     part = models.IntegerField()
@@ -25,10 +31,3 @@ class PracticalPart(models.Model):
 
     def __str__(self):
         return self.name
-
-class PracticalQuestion(models.Model):
-    part = models.IntegerField()
-    question = models.TextField()
-    example = models.ImageField(blank=True, upload_to='practice/1/')
-    answer = models.CharField(blank=True, max_length=255)
-    comment = models.TextField()

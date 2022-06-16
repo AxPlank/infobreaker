@@ -1,3 +1,21 @@
 {% extends 'base.html' %}
-{% block conetent %}
+{% block content %}
+<section>
+    <table>
+        <thead>
+            <tr>
+                <td>번호</td>
+                <td>문제</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for problem in problem_list %}
+            <tr>
+                <td>{{ problem.id }}</td>
+                <td><a href="{% url 'exam:problem' problem.id %}">{{ problem.question }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
 {% endblock %}

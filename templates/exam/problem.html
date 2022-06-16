@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <h1>{{ problem.id }}번<span id="yes_or_no"></span></h1>
+    {% if problem.example %}
+    <p><img src="{{ problem.example.url }}"</p>
+    {% endif %}
+    <p>{{ problem.question }}</p>
+    <form>
+        {% csrf_token %}
+        <input type="hidden" name="problem_type" value="{{ part.type_integer }}">
+        <input type="hidden" name="problem_answer" value="{{ part.answer }}">
+        {% if problem.type_integer == 1 %}
+        <input type="radio" name="ex" value="1">{{ problem.ex1 }}<br>
+        <input type="radio" name="ex" value="2">{{ problem.ex2 }}<br>
+        <input type="radio" name="ex" value="3">{{ problem.ex3 }}<br>
+        <input type="radio" name="ex" value="4">{{ problem.ex4 }}<br>
+        {% else %}
+        <input type="text">
+        {% endif %}
+        <input type="button" onclick="check_ans()" value="정답 확인">
+    </form>
+    <script type="text/javascript">
+        function check_ans() {
+            if (Number(document.getElementsByName("problem_type").values) == 1) {
+                if (Number(document.getElementsByName("ex").values) == Number(document.getElementsByName("problem_answer").values)) {
+                    document.getElementsById("yes_or_no").innerHTML = "정답입니다.";
+                }
+                else {
+                    document.getElementsById("yes_or_no").innerHTML = "틀렸습니다.";
+                }
+            }
+        }
+    </script>
+</section>
+{% endblock %}
