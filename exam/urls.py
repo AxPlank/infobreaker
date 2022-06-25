@@ -9,4 +9,5 @@ urlpatterns = [
     path('practical/', views.practical, name='practical'),
     path('practical/<int:part>', views.practicalPart, name='practicalPart'),
     path('problem/<int:problem_id>', views.problem, name='problem'),
+    path('problem/<int:problem_id>/check', views.checkAnswer, name='checkAnswer'),
 ]
