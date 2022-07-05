@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+    <div>
+        <h2>회원가입</h2>
+    </div>
+    <div>
+        이미 가입되어 있다면, <a href="{% url 'main:login' %}">로그인</a> 하세요.
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {% include "form_errors.html" %}
+        <div>
+            <label for="username">ID</label>
+            <input type="text" name="username" id="username" value="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for="password1">PW</label>
+            <input type="password" name="password1" id="password1" value="{{ form.password1.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for="password2">PW Check</label>
+            <input type="password" name="password2" id="password2" value="{{ form.password2.value|default_if_none:'' }}">
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" value="{{ form.email.value|default_if_none:'' }}">
+        </div>
+        <input type="submit" value="가입">
+    </form>
+</section>
+{% endblock %}

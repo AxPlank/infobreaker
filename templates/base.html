@@ -9,7 +9,7 @@
 </head>
 <body>
 <section>
-    <h1>Infobreaker</h1>
+    <h1><a href="{% url 'main:main' %}">Infobreaker</a></h1>
     <div>
         <ul>
             <li>
@@ -27,6 +27,11 @@
                     <li><a href="{% url 'board:book_list' %}">책 리뷰</a></li>
                 </ul>
             </li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'main:logout' %}">로그아웃</a></li>
+            {% else %}
+            <li><a href="{% url 'main:login' %}">로그인</a></li>
+            {% endif %}
         </ul>
     </div>
 </section>
