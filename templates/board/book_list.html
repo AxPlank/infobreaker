@@ -13,7 +13,7 @@
         <tbody>
             {% for book in books %}
             <tr>
-                <td><a href="{% url 'board:review' book.id %}">{{ book.title }}</a></td>
+                <td><a href="{% url 'board:book_detail' book.id %}">{{ book.title }}</a></td>
                 <td>{{ book.cover }}</td>
                 <td>{{ book.publisher }}</td>
                 <td>{{ book.price }}</td>

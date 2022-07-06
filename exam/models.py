@@ -13,12 +13,12 @@ class Problem(models.Model):
     type_integer = models.IntegerField()
     part = models.IntegerField()
     question = models.TextField()
-    example = models.ImageField(null=True, blank=True, upload_to=f'{type}/{part}/')
-    ex1 = models.TextField(blank=True)
-    ex2 = models.TextField(blank=True)
-    ex3 = models.TextField(blank=True)
-    ex4 = models.TextField(blank=True)
-    answer = models.CharField(blank=True, max_length=255)
+    example = models.ImageField(null=True, blank=True, upload_to=f'media/problem/{type}/{part}/')
+    ex1 = models.TextField(null=True, blank=True)
+    ex2 = models.TextField(blank=True, null=True)
+    ex3 = models.TextField(blank=True, null=True)
+    ex4 = models.TextField(blank=True, null=True)
+    answer = models.CharField(null=True, blank=True, max_length=255)
     comment = models.TextField()
 
     def __str__(self):
