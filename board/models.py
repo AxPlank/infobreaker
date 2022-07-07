@@ -8,9 +8,9 @@ class Book(models.Model):
     cover_img = models.ImageField(upload_to='media/board/bookcover/')
     price = models.IntegerField()
     publisher = models.CharField(max_length=255)
-    stat_sum = models.IntegerField(null=True, blank=True)
-    cnt = models.FloatField(null=True, blank=True)
-    stat_avg = models.FloatField(null=True, blank=True)
+    stat_sum = models.IntegerField()
+    cnt = models.IntegerField()
+    stat_avg = models.FloatField()
 
     def __str__(self):
         return self.title

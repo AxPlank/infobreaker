@@ -2,14 +2,14 @@
 {% block content %}
 <section>
     <div>
-        <h2>{{ book.title }}</h2>
+        <h2>{{ book.title }}<span>[{{ book.stat_avg }}/10 점]</h2>
     </div>
     <div>
         <img src="{{ book.cover_img.url }}">
     </div>
     <div>
         <ul>
-            {% for review in book.review_set.all %}
+            {% for review in book.answer_set.all %}
             <li>
                 <dl>
                     <dt>{{ review.user.username }} - {{ review.create_date }}</dt>
@@ -24,8 +24,8 @@
         {% csrf_token %}
         {% include 'form_errors.html' %}
         <div>
-            <label for="score">평점</label>
-            <input type="number" min="1" max="10" name="score" id="score" value="{{ form.stat.value|default_if_none:'' }}">
+            <label for="stat">평점</label>
+            <input type="number" min="0" max="10" name="stat" id="stat" value="{{ form.stat.value|default_if_none:'' }}">
         </div>
         <div>
             <label for="review">리뷰</label>

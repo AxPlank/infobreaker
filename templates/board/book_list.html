@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <section>
-    <table>
+    <table style="text-align: center">
         <thead>
             <tr>
-                <td>제목</td>
+                <td>책</td>
                 <td>표지</td>
                 <td>출판사</td>
                 <td>가격</td>
+                <td>평점</td>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,7 @@
                 <td><img src="{{ book.cover_img.url }}"></td>
                 <td>{{ book.publisher }}</td>
                 <td>{{ book.price }}</td>
+                <td>{{ book.stat_avg }}</td>
             </tr>
             {% endfor %}
         </tbody>

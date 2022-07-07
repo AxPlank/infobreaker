@@ -26,6 +26,10 @@ def bookReview(request, book_id):
             review.book = book
             review.user = request.user
             review.save()
+            book.stat_sum += int(review.stat)
+            book.cnt += 1
+            book.stat_avg = round(book.stat_sum/(book.cnt-1), 2)
+            book.save()
             return redirect('board:book_detail', book_id=book.id)
     else:
         form = BookReviewForm()
