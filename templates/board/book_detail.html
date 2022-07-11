@@ -9,12 +9,12 @@
     </div>
     <div>
         <ul>
-            {% for review in book.answer_set.all %}
+            {% for review in book.bookreview_set.all %}
             <li>
                 <dl>
                     <dt>{{ review.user.username }} - {{ review.create_date }}</dt>
                     <dd>{{ review.stat }}/10 점</dd>
-                    <dd>{{ review.content }}</dd>
+                    <dd>{{ review.review }}</dd>
                 </dl>
             </li>
             {% endfor %}
