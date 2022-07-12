@@ -1,29 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-<script type="text/javascript">
-    function ans_check() {
-        const Ex1 = document.getElementById("ex1");
-        const Ex2 = document.getElementById("ex2");
-        const Ex3 = document.getElementById("ex3");
-        const Ex4 = document.getElementById("ex4");
-        const ans = document.getElementById("answer").value;
-        const yn = document.getElementById("yes_or_no");
-
-        if (Ex1.checked & (Ex1.value == ans)) {
-            alert(0);
-            yn.innerHTML = "정답입니다.";
-        }
-    }
-</script>
 <section>
-    <h1>{{ problem.id }}번<span id="yes_or_no"></span></h1>
+    <h1>{{ problem.id }}번</h1>
     {% if problem.example %}
     <p><img src="{{ problem.example.url }}"></p>
     {% endif %}
     <p>{{ problem.question }}</p>
     <form method="post" onsubmit="ans_check()">
         {% csrf_token %}
-        <input type="hidden" name="problem_type" value="{{ problem.type_integer }}">
+        <input type="hidden" name="problem_type" id="type" value="{{ problem.type_integer }}">
         <input type="hidden" id="answer" value="{{ problem.answer }}">
         {% if problem.type_integer == 1 %}
         <input type="radio" name="ex" id="ex1" value="1">{{ problem.ex1 }}<br>
@@ -31,9 +16,60 @@
         <input type="radio" name="ex" id="ex3" value="3">{{ problem.ex3 }}<br>
         <input type="radio" name="ex" id="ex4" value="4">{{ problem.ex4 }}<br>
         {% else %}
-        <input type="text" name="ex">
+        <input type="text" name="ex" id="practical_ans">
         {% endif %}
         <input type="submit" value="정답 체크">
     </form>
 </section>
+<script type="text/javascript">
+    const ans = document.getElementById("answer").value;
+    const yn = document.getElementById("yes_or_no");
+    const type = document.getElementById("type").value;
+    
+    function written_check() {
+        const Ex1 = document.getElementById("ex1");
+        const Ex2 = document.getElementById("ex2");
+        const Ex3 = document.getElementById("ex3");
+        const Ex4 = document.getElementById("ex4");
+        
+        if (Ex1.checked & (Ex1.value == ans)) {
+            alert("정답입니다.");
+        }
+        else if (Ex2.checked & (Ex2.value == ans)) {
+            alert("정답입니다.");
+        }
+        else if (Ex3.checked & (Ex3.value == ans)) {
+            alert("정답입니다.");
+        }
+        else if (Ex4.checked & (Ex4.value == ans)) {
+            alert("정답입니다.");
+        }
+        else {
+            alert("틀렸습니다.");
+        }
+    }
+
+    function practical_check() {
+        const practical = document.getElementById("practical_ans");
+
+        if (practical.value == ans) {
+            alert("정답입니다.");
+        }
+        else if (ans == "") {
+            alert("서술형 문제는 정답이 없습니다.");
+        }
+        else {
+            alert("틀렸습니다.");
+        }
+    }
+
+    function ans_check() {
+        if (type == "1") {
+            written_check()
+        }
+        else {
+            practical_check()
+        }
+    }
+</script>
 {% endblock %}
