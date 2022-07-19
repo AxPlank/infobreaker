@@ -5,7 +5,7 @@ from main.forms import User
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
-    cover_img = models.ImageField(upload_to='media/board/bookcover/')
+    cover_img = models.ImageField(upload_to='board/bookcover/')
     price = models.IntegerField()
     publisher = models.CharField(max_length=255)
     stat_sum = models.IntegerField()

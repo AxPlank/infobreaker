@@ -13,13 +13,14 @@ class Problem(models.Model):
     type_integer = models.IntegerField()
     part = models.IntegerField()
     question = models.TextField()
-    example = models.ImageField(null=True, blank=True, upload_to=f'media/problem/{type}/{part}/')
+    example = models.ImageField(null=True, blank=True, upload_to=f'problem/{type}/{part}/{question}')
     ex1 = models.TextField(null=True, blank=True)
     ex2 = models.TextField(blank=True, null=True)
     ex3 = models.TextField(blank=True, null=True)
     ex4 = models.TextField(blank=True, null=True)
     answer = models.CharField(null=True, blank=True, max_length=255)
     comment = models.TextField()
+    comment_img = models.ImageField(null=True, blank=True, upload_to=f'problem/{type}/{part}/{question}')
 
     def __str__(self):
         title = f'{self.type} part {self.part}. {self.question}'

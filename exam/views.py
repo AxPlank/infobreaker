@@ -33,3 +33,7 @@ def problem(request, problem_id):
     problem = get_object_or_404(Problem, pk=problem_id)
     dictt = {'problem': problem}
     return render(request, 'exam/problem.html', dictt)
+
+@login_required(login_url='main:login')
+def commentDetail(request, problem_id):
+    return render(request, 'exam/comment.html')

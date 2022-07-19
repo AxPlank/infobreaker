@@ -10,16 +10,19 @@
         {% csrf_token %}
         <input type="hidden" name="problem_type" id="type" value="{{ problem.type_integer }}">
         <input type="hidden" id="answer" value="{{ problem.answer }}">
-        {% if problem.type_integer == 1 %}
-        <input type="radio" name="ex" id="ex1" value="1">{{ problem.ex1 }}<br>
-        <input type="radio" name="ex" id="ex2" value="2">{{ problem.ex2 }}<br>
-        <input type="radio" name="ex" id="ex3" value="3">{{ problem.ex3 }}<br>
-        <input type="radio" name="ex" id="ex4" value="4">{{ problem.ex4 }}<br>
-        {% else %}
-        <input type="text" name="ex" id="practical_ans">
-        {% endif %}
-        <input type="submit" value="정답 체크">
+        <div>
+            {% if problem.type_integer == 1 %}
+            <input type="radio" name="ex" id="ex1" value="1">{{ problem.ex1 }}<br>
+            <input type="radio" name="ex" id="ex2" value="2">{{ problem.ex2 }}<br>
+            <input type="radio" name="ex" id="ex3" value="3">{{ problem.ex3 }}<br>
+            <input type="radio" name="ex" id="ex4" value="4">{{ problem.ex4 }}<br>
+            {% else %}
+            <input type="text" name="ex" id="practical_ans">
+            {% endif %}
+            <input type="submit" value="정답 체크">
+        </div>
     </form>
+    <a href="{% url 'exam:comment' problem.id %}" target="_blank">문제 해설</a>
 </section>
 <script type="text/javascript">
     const ans = document.getElementById("answer").value;
