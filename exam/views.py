@@ -5,9 +5,11 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 @login_required(login_url='main:login')
-def written(request):
-    part_list = WrittenPart.objects.order_by('part')
-    dictt = {'part_list': part_list}
+def partChoice(request):
+    written_list = WrittenPart.objects.order_by('part')
+    practical_list = PracticalPart.objects.order_by('part')
+    dictt = {'written_list': written_list,
+             'practical_list': practical_list}
     return render(request, 'exam/written.html', dictt)
 
 @login_required(login_url='main:login')
@@ -15,12 +17,6 @@ def writtenPart(request, part):
     problem_list = Problem.objects.filter(type='필기', part=part).order_by('id')
     dictt = {'problem_list': problem_list}
     return render(request, 'exam/question_choice.html', dictt)
-
-@login_required(login_url='main:login')
-def practical(request):
-    part_list = PracticalPart.objects.order_by('part')
-    dictt = {'part_list': part_list}
-    return render(request, 'exam/practical.html', dictt)
 
 @login_required(login_url='main:login')
 def practicalPart(request, part):
@@ -36,4 +32,6 @@ def problem(request, problem_id):
 
 @login_required(login_url='main:login')
 def commentDetail(request, problem_id):
-    return render(request, 'exam/comment.html')
+    problem = get_object_or_404(Problem, pk=problem_id)
+    dictt = {'problem': problem}
+    return render(request, 'exam/comment.html', dictt)

@@ -1,10 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 <section>
-    <ol>
-        {% for parts in part_list %}
-        <li><a href="{% url 'exam:writtenPart' parts.part %}">{{ parts.name }}</a></li>
-        {% endfor %}
-    </ol>
+    <h1>파트 선택</h1>
+    <p>파트를 선택해 원하는 문제를 풀어보세요.</p>
+    <div>
+        <h2>필기</h2>
+        <ol>
+            {% for parts in written_list %}
+            <li><a href="{% url 'exam:writtenPart' parts.part %}">{{ parts.name }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
+    <div>
+        <h2>실기</h2>
+        <ol>
+            {% for parts in practical_list %}
+            <li><a href="{% url 'exam:practicalPart' parts.part %}">{{ parts.name }}</a></li>
+            {% endfor %}
+        </ol>
+    </div>
 </section>
 {% endblock %}

@@ -1,4 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>hello world</h1>
-{% endblock  %}
+<section>
+    <div>
+        <h1>정답 해설</h1>
+        <h2>Q. {{ problem.question }}</h2>
+        {% if problem.example %}
+        <image src="{{ problem.example.url }}">
+        {% endif %}
+        {% if problem.type_integer == 1 %}
+        <ol>
+            <li>{{ problem.ex1 }}</li>
+            <li>{{ problem.ex2 }}</li>
+            <li>{{ problem.ex3 }}</li>
+            <li>{{ problem.ex4 }}</li>
+        </ol>
+        {% endif %}
+    </div>
+    <div>
+        <h3>정답</h3>
+        {% if problem.answer %}
+        <p>
+            {{ problem.answer }}.
+            {% if problem.answer == "1" %}
+            {{ problem.ex1 }}
+            {% endif %}
+            {% if problem.answer == "2" %}
+            {{ problem.ex1 }}
+            {% endif %}
+            {% if problem.answer == "3" %}
+            {{ problem.ex1 }}
+            {% endif %}
+            {% if problem.answer == "4" %}
+            {{ problem.ex1 }}
+            {% endif %}
+        </p>
+        {% else %}
+        <p> 서술형 문제는 정답이 없습니다.
+        {% endif %}
+        <h3>풀이</h3>
+        <p>{{ problem.comment }}</p>
+        <a href="{% url 'exam:problem' problem.id %}">돌아가기</a>
+        <a href="#">다른 문제 보기</a>
+</section>
+{% endblock %}
