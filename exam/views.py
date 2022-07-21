@@ -10,7 +10,7 @@ def partChoice(request):
     practical_list = PracticalPart.objects.order_by('part')
     dictt = {'written_list': written_list,
              'practical_list': practical_list}
-    return render(request, 'exam/written.html', dictt)
+    return render(request, 'exam/part_choice.html', dictt)
 
 @login_required(login_url='main:login')
 def writtenPart(request, part):
@@ -31,7 +31,19 @@ def problem(request, problem_id):
     return render(request, 'exam/problem.html', dictt)
 
 @login_required(login_url='main:login')
-def commentDetail(request, problem_id):
+def comment(request, problem_id):
     problem = get_object_or_404(Problem, pk=problem_id)
     dictt = {'problem': problem}
     return render(request, 'exam/comment.html', dictt)
+
+@login_required(login_url='main:login')
+def CBTChoice(request):
+    return render(request, 'exam/CBT_choice.html')
+
+@login_required(login_url='main:login')
+def CBT_part(request, part):
+    problem_list = Problem.objects.filter(type_integer=1, part=1).order_by('?')[:20]
+    dictt = {}
+    for i in range(20):
+        dictt[f'Q{i}'] = problem_list[i]
+    return render(request, 'exam/CBT_parttest.html', dictt)

@@ -8,5 +8,7 @@ urlpatterns = [
     path('written/<int:part>', views.writtenPart, name='writtenPart'),
     path('practical/<int:part>', views.practicalPart, name='practicalPart'),
     path('problem/<int:problem_id>', views.problem, name='problem'),
-    path('problem/<int:problem_id>/comment', views.commentDetail, name='comment'),
+    path('problem/<int:problem_id>/comment', views.comment, name='comment'),
+    path('CBT', views.CBTChoice, name='CBT'),
+    path('CBT/part', views.CBT_part, name='CBT_parttest'),
 ]
