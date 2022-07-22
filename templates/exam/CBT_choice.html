@@ -12,13 +12,17 @@
         </ol>
     </div>
     <div>
-        <a href="#">필기 1과목</a>
-        <a href="#">필기 2과목</a>
-        <a href="#">필기 3과목</a>
-        <a href="#">필기 4과목</a>
-        <a href="#">필기 5과목</a>
-        <a href="#">필기 전체</a>
-        <a href="#">실기 전체</a>
+        {% for part in parts %}
+        <div>
+            <a href="{% url 'exam:CBT_parttest' part.part %}">필기 {{ part.id }}과목. {{ part.name }}</a>
+        </div>
+        {% endfor %}
+        <div>
+            <a href="#">필기 전체</a>
+        </div>
+        <div>
+            <a href="#">실기 전체</a>
+        </div>
     </div>
 </section>
 {% endblock %}

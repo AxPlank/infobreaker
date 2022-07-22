@@ -9,13 +9,30 @@
 </head>
 <body>
 <section>
-    <form>
+    <form Q1ex="Q1ex" Q2ex="Q2ex" Q3ex="Q3ex" Q4ex="Q4ex" Q5ex="Q5ex" Q6ex="Q6ex" Q7ex="Q7ex" Q8ex="Q8ex" Q9ex="Q9ex" Q10ex="Q10ex"
+     Q11ex="Q11ex" Q12ex="Q12ex" Q13ex="Q13ex" Q14ex="Q14ex" Q15ex="Q15ex" Q16ex="Q16ex" Q17ex="Q17ex" Q18ex="Q18ex" Q19ex="Q19ex" Q20ex="Q20ex"
+     method="post" action="#">
         <ol>
             <li>
                 <dl>
-                    <dt>{{ Q1. }}</dt>
+                    <dt>{{ Q1.question }}</dt>
+                    {% if Q1.example %}
+                    <dd>
+                        <img src="{{ Q1.example.url }}">
+                    </dd>
+                    {% endif %}
+                    <dd>
+                        <ul>
+                            <li><input type="radio" name="Q1ex" value="1">{{ Q1.ex1 }}</li>
+                            <li><input type="radio" name="Q1ex" value="1">{{ Q1.ex2 }}</li>
+                            <li><input type="radio" name="Q1ex" value="1">{{ Q1.ex3 }}</li>
+                            <li><input type="radio" name="Q1ex" value="1">{{ Q1.ex4 }}</li>
+                        </ul>
+                    </dd>
+                    <dd><input id="Q1id" value="{{ Q1.id }}"></dd>
                 </dl>
             </li>
+            <input type="submit" id="submitBtn" value="시험 종료">
         </ol>
     </form>
 </section>
