@@ -44,10 +44,8 @@ def CBTChoice(request):
 
 @login_required(login_url='main:login')
 def CBT_part(request, part):
-    problem_list = Problem.objects.filter(type_integer=1, part=part).order_by('?')[:20]
-    dictt = {}
-    for i in range(20):
-        dictt[f'Q{i+1}'] = problem_list[i]
+    problem_list = Problem.objects.filter(type_integer=1, part=part).order_by('?')[:1]
+    dictt = {'list': problem_list}
     return render(request, 'exam/CBT_parttest.html', dictt)
 
 @login_required(login_url='main:login')
